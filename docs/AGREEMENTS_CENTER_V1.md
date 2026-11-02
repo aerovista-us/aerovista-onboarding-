@@ -40,3 +40,20 @@ Status: design and public preview only. No signature, contract, or access entitl
 - Phase D: enable protected onboarding only after security, legal and operations acceptance.
 
 No secrets or legal templates should be committed to the public site without explicit approval.
+
+## Selected provider: Documenso (2026-11-02)
+- Deploy a pinned stable self-hosted Documenso release on an isolated NXCore Docker network; do not use development Compose in production.
+- Proposed signer URL: https://sign.aerovista.us (DNS and tunnel not yet configured). Keep onboarding at https://onboarding.aerovista.us.
+- Use Documenso API v2 envelopes and authenticated webhooks. Avoid building new integrations on deprecated document/template endpoints.
+- Canonical identity remains AVCC Identity Gateway. Do not assume Documenso OIDC SSO is included in the free self-hosted tier; enterprise features may require a license. External recipients can use a provider signing link with backend-controlled assignments.
+- Production prerequisites: dedicated PostgreSQL >=14, secrets in protected environment, configured SMTP, persistent encrypted storage, signing .p12 certificate with private key stored outside git, backups with restore test, pinned image, TLS and protected ingress.
+- Restrict outbound network access from Documenso; webhook SSRF defenses are explicitly best-effort. Block RFC1918, loopback, link-local and metadata destinations except narrowly approved dependencies.
+- Use a server-only Documenso API key; issue envelope for an immutable legally approved PDF, verify callback authenticity and completed envelope status, then independently fetch/store the signed PDF and audit evidence before marking assignment signed.
+- Agreement eligibility is computed by AeroCoreOS, not Documenso alone. Do not enable protected training until legal review, signature evidence, session authorization and all mandatory requirements pass.
+- Test signing and PDF signature validation end-to-end before pilot; a running Documenso container does not mean signing works.
+- License review: Documenso core is AGPL-3.0, enterprise capabilities separately licensed. Review obligations before custom modifications or network deployment.
+
+References:
+- https://docs.documenso.com/docs/self-hosting
+- https://docs.documenso.com/docs/self-hosting/configuration/environment
+- https://docs.documenso.com/docs/developers
