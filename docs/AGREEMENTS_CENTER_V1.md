@@ -57,3 +57,23 @@ References:
 - https://docs.documenso.com/docs/self-hosting
 - https://docs.documenso.com/docs/self-hosting/configuration/environment
 - https://docs.documenso.com/docs/developers
+
+## Reusable contract lifecycle (not onboarding-only)
+Documenso is the signing provider, not the canonical contract database. AeroCoreOS/AVCC owns contract lifecycle and permissions.
+
+Supported document classes: NDA/confidentiality, employment/contractor agreements, master service agreements, statements of work, client proposals requiring signature, vendor agreements, change orders, amendments and renewals.
+
+Proposed additional private records:
+- contract_parties: party_id, party_type (person|organization), legal_name, identity_id (optional), verified_contact_ref.
+- contracts: contract_id, contract_type, owner_division, client_or_vendor_ref, status, effective_at, expires_at, renewal_policy, confidentiality_classification, project_ref.
+- contract_versions: contract_id, version_id, sha256, immutable_document_ref, approved_by, approved_at, supersedes_version_id.
+- contract_signers: version_id, party_id, signer_name, signer_email, signer_role, signature_order, authority_verified.
+- contract_envelopes: version_id, provider, provider_envelope_id, state, issued_at, completed_at, verified_at.
+- contract_obligations: contract_id, obligation_type, owner_identity_id, due_at, status, evidence_ref.
+- contract_audit: actor, action, timestamp, request_id, target, redacted_metadata.
+
+Workflow: draft -> internal review -> approved version -> authorized signer selection -> Documenso envelope -> independently verified signed artifact -> active/fulfilled -> renewal/expiry/archive. Rejections and voids must remain auditable. Never automatically treat a signed document as approval to spend or to grant account access.
+
+Security: organization-scoped authorization; client data segregation; verified signer authority; immutable signed versions; encrypted private storage; retention/holds; reminders; webhook replay prevention; signature evidence and downloadable receipts. Contract signatures may involve external recipients without AeroCoreOS accounts, but internal access to contract records always requires AVCC authorization.
+
+Integration points: onboarding eligibility, AVCC client/project vault, vendor management, contract renewal notifications and role-scoped dashboards. Do not implement a parallel contract system inside the public onboarding repository.
