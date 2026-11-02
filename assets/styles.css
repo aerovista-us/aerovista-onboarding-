@@ -472,3 +472,11 @@ img,svg,video,iframe{max-width:100%;height:auto}
  .shell{grid-template-columns:minmax(225px,250px) minmax(0,1fr);gap:18px}
  .card .content{padding:30px}
 }
+
+/* Agreements Center and orientation refinements */
+@media (min-width:1201px){.card .content .journey{margin:-12px 0 22px;padding:0 0 18px;border-bottom:1px solid var(--line)}}
+@media (max-width:1200px){.card .content .journey{margin:0 0 18px;padding:0 0 16px;border-bottom:1px solid var(--line)}}
+.card .content .journey .journey-track{flex-basis:100%}
+.box a.btn{margin-top:10px}
+a:not(.btn):focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+@media(max-width:640px){.box a.btn{display:flex;width:100%;white-space:normal;text-align:center}.content .callout{overflow-wrap:anywhere}}
