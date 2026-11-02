@@ -26,8 +26,8 @@ if(main){
  const progress=document.createElement("div");progress.className="journey";progress.setAttribute("aria-label","Guide progress");
  const label=document.createElement("span");label.className="journey-label";label.textContent="Explore AeroVista";
  const count=document.createElement("span");count.className="journey-count";count.textContent="Section "+(currentIndex+1)+" of "+links.length;
- const track=document.createElement("div");track.className="journey-track";track.setAttribute("role","progressbar");track.setAttribute("aria-valuemin","0");track.setAttribute("aria-valuemax",String(links.length));track.setAttribute("aria-valuenow",String(currentIndex+1));track.setAttribute("aria-label","Sections completed in sequence");
- const fill=document.createElement("div");fill.className="journey-fill";fill.style.width=((currentIndex+1)/links.length*100)+"%";track.append(fill);progress.append(label,count,track);main.before(progress);
+ const track=document.createElement("div");track.className="journey-track";track.setAttribute("role","progressbar");track.setAttribute("aria-valuemin","0");track.setAttribute("aria-valuemax",String(links.length));track.setAttribute("aria-valuenow",String(currentIndex+1));track.setAttribute("aria-label","Current section in guide");
+ const fill=document.createElement("div");fill.className="journey-fill";fill.style.width=((currentIndex+1)/links.length*100)+"%";track.append(fill);progress.append(label,count,track);main.prepend(progress);
 }
 const wrap=document.querySelector(".wrap");
 if(wrap&&!wrap.querySelector(".site-footer")){const foot=document.createElement("footer");foot.className="site-footer";const a=document.createElement("a");a.href="https://aerovista.us/";a.textContent="AeroVista LLC";a.rel="noopener";const span=document.createElement("span");span.textContent="Where Vision Takes Flight · Seven Divisions, One Vision";foot.append(a,span);wrap.append(foot)}
