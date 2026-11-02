@@ -380,3 +380,20 @@ img,svg,video,iframe{max-width:100%;height:auto}
  .footerbar{padding:12px 10px}
  .mobile-menu{padding:10px 12px}
 }
+
+/* Layout hotfix: prevent sidebar and content overlap on narrow viewports */
+.shell{align-items:start;min-height:0}
+.sidebar{align-self:start;min-height:0}
+.card{align-self:start;min-width:0}
+@media(max-width:1200px){
+ .shell{display:flex!important;flex-direction:column!important;gap:12px!important;min-height:0!important}
+ .sidebar{position:relative!important;top:auto!important;width:100%!important;height:auto!important;max-height:none!important;overflow:visible!important;z-index:5}
+ .sidebar .head{display:flex!important;align-items:center;justify-content:space-between;gap:12px}
+ .sidebar .head .hint{display:none!important}
+ .mobile-menu{display:inline-flex!important}
+ .sidebar .nav{display:none!important}
+ .sidebar.is-open .nav{display:flex!important;max-height:min(65dvh,520px);overflow-y:auto}
+ .card{width:100%!important;position:relative!important;z-index:1}
+ .grid.two,.grid.three{grid-template-columns:minmax(0,1fr)!important}
+ .grid>[style*="grid-column"]{grid-column:auto!important}
+}
