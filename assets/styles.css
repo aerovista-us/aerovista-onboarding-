@@ -397,3 +397,42 @@ img,svg,video,iframe{max-width:100%;height:auto}
  .grid.two,.grid.three{grid-template-columns:minmax(0,1fr)!important}
  .grid>[style*="grid-column"]{grid-column:auto!important}
 }
+
+/* Experience refinement: clean editorial hierarchy and page journey */
+:root{--radius:16px;--radius2:12px}
+.topbar{padding:4px 2px 8px}
+.brand .badge{font-family:"Orbitron",sans-serif;font-size:13px;letter-spacing:.06em}
+.card{position:relative}
+.card:before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,#00AEEF,rgba(0,174,239,.14) 65%,transparent);pointer-events:none}
+.kicker{color:#83dfff;font-weight:700;font-size:11px;letter-spacing:.17em}
+.content h2{margin:12px 0 18px}
+.content h3{font-size:clamp(13px,1.5vw,16px)}
+.content p{line-height:1.75}
+.box{transition:border-color .18s ease,background .18s ease}
+.box:hover{border-color:rgba(0,174,239,.34);background:#202832}
+.nav a{transition:background .15s ease,border-color .15s ease,color .15s ease}
+.nav a:hover{background:rgba(0,174,239,.075);color:#E8EDF2}
+.nav a .dot{flex:0 0 9px}
+.btn{font-family:var(--font);font-weight:650}
+.btn[data-next]{border-color:rgba(0,174,239,.42);background:rgba(0,174,239,.10);color:#E8EDF2}
+.journey{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 14px;padding:0 2px}
+.journey-label{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+.journey-count{font-size:12px;color:#8fdef8;font-variant-numeric:tabular-nums}
+.journey-track{height:3px;width:100%;background:#29323b;border-radius:99px;overflow:hidden}
+.journey-fill{height:100%;background:#00AEEF;border-radius:99px;transition:width .2s ease}
+.mobile-current{display:none;color:#9adcf2;font-size:12px;margin-left:auto;min-width:0;max-width:44%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.site-footer{margin:24px 4px 4px;padding:16px 0 4px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:11px}
+.site-footer a{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:1200px){
+ .mobile-current{display:block}
+ .sidebar .head .title{margin:0}
+ .sidebar .head{gap:8px}
+ .mobile-menu{flex:0 0 auto}
+}
+@media(max-width:420px){
+ .sidebar .head .title{font-size:12px}
+ .mobile-current{max-width:36%}
+ .mobile-menu{font-size:13px}
+ .content h2{font-size:clamp(22px,7vw,30px)}
+ .journey{margin-bottom:10px}
+}
