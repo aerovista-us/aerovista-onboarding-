@@ -436,3 +436,39 @@ img,svg,video,iframe{max-width:100%;height:auto}
  .content h2{font-size:clamp(22px,7vw,30px)}
  .journey{margin-bottom:10px}
 }
+
+/* Desktop refinement: restore a true two-column workspace above tablet width.
+   Mobile and tablet layout rules remain unchanged. */
+@media (min-width:1201px){
+ .wrap{max-width:1480px;padding:32px clamp(24px,3vw,48px) 40px}
+ .topbar{margin-bottom:22px;padding:8px 4px 16px;border-bottom:1px solid rgba(192,192,192,.12)}
+ .brand{gap:14px}
+ .brand .badge{width:46px;height:46px;font-size:15px}
+ .brand h1{font-size:19px}
+ .brand .sub{font-size:13px}
+ .shell{display:grid;grid-template-columns:minmax(250px,280px) minmax(0,1fr);gap:24px;align-items:start}
+ .sidebar{position:sticky;top:24px;max-height:calc(100dvh - 48px);overflow:auto;scrollbar-width:thin;box-shadow:0 12px 36px rgba(0,0,0,.18)}
+ .sidebar .head{padding:19px 18px 15px}
+ .sidebar .head .title{font-size:14px}
+ .sidebar .head .hint{line-height:1.5}
+ .nav{padding:12px;gap:3px}
+ .nav a{padding:11px 12px;border-radius:10px;font-size:13px;line-height:1.35}
+ .card{grid-column:2;min-width:0;border-radius:18px}
+ .card .content{padding:clamp(30px,3.5vw,54px)}
+ .content h2{font-size:clamp(30px,2.7vw,42px);max-width:23ch;line-height:1.18;margin-bottom:22px}
+ .content>p{max-width:76ch}
+ .content p{line-height:1.8}
+ .grid{gap:16px}
+ .grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .box{padding:22px;min-width:0}
+ .box h3{font-size:15px}
+ .footerbar{padding:17px 26px}
+ .journey{padding:20px 26px 14px;margin:0;border-bottom:1px solid var(--line)}
+ .journey-track{height:4px}
+ .site-footer{margin-top:32px}
+}
+@media (min-width:1201px) and (max-width:1360px){
+ .shell{grid-template-columns:minmax(225px,250px) minmax(0,1fr);gap:18px}
+ .card .content{padding:30px}
+}
